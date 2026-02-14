@@ -28,68 +28,71 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="navbar">
-      <div className="nav-container">
-        {/* Logo/Brand */}
-        <Link to="/" className="nav-brand" onClick={closeMobileMenu}>
-          <GraduationCap size={24} />
-          <span>Student Management</span>
-        </Link>
+    <>
+      {/* Mobile menu button */}
+      <button
+        className="mobile-menu-btn"
+        onClick={toggleMobileMenu}
+        aria-label="Toggle mobile menu"
+      >
+        {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+      </button>
 
-        {/* Mobile menu button */}
-        <button 
-          className="mobile-menu-btn"
-          onClick={toggleMobileMenu}
-          aria-label="Toggle mobile menu"
-        >
-          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-
-        {/* Navigation links */}
-        <div className={`nav-menu ${isMobileMenuOpen ? 'nav-menu-open' : ''}`}>
-          <Link 
-            to="/dashboard" 
-            className={`nav-link ${isActive('/dashboard') || isActive('/')}`}
-            onClick={closeMobileMenu}
-          >
-            <Home size={18} />
-            <span>Dashboard</span>
+      {/* Sidebar Navigation */}
+      <nav className={`navbar ${isMobileMenuOpen ? 'nav-menu-open' : ''}`}>
+        <div className="nav-container">
+          {/* Logo/Brand */}
+          <Link to="/" className="nav-brand" onClick={closeMobileMenu}>
+            <GraduationCap size={32} />
+            <span>EduManage</span>
           </Link>
 
-          <Link 
-            to="/students" 
-            className={`nav-link ${isActive('/students')}`}
-            onClick={closeMobileMenu}
-          >
-            <Users size={18} />
-            <span>Students</span>
-          </Link>
+          {/* Navigation links */}
+          <div className="nav-menu">
+            <Link
+              to="/dashboard"
+              className={`nav-link ${isActive('/dashboard') || isActive('/')}`}
+              onClick={closeMobileMenu}
+            >
+              <Home size={20} />
+              <span>Dashboard</span>
+            </Link>
 
-          <Link 
-            to="/fees" 
-            className={`nav-link ${isActive('/fees')}`}
-            onClick={closeMobileMenu}
-          >
-            <CreditCard size={18} />
-            <span>Fees</span>
-          </Link>
+            <Link
+              to="/students"
+              className={`nav-link ${isActive('/students')}`}
+              onClick={closeMobileMenu}
+            >
+              <Users size={20} />
+              <span>Students</span>
+            </Link>
 
-          <Link 
-            to="/inquiries" 
-            className={`nav-link ${isActive('/inquiries')}`}
-            onClick={closeMobileMenu}
-          >
-            <MessageSquare size={18} />
-            <span>Inquiries</span>
-          </Link>
+            <Link
+              to="/fees"
+              className={`nav-link ${isActive('/fees')}`}
+              onClick={closeMobileMenu}
+            >
+              <CreditCard size={20} />
+              <span>Fees</span>
+            </Link>
+
+            <Link
+              to="/inquiries"
+              className={`nav-link ${isActive('/inquiries')}`}
+              onClick={closeMobileMenu}
+            >
+              <MessageSquare size={20} />
+              <span>Inquiries</span>
+            </Link>
+          </div>
         </div>
+      </nav>
 
-        {/* Mobile menu overlay */}
-        {isMobileMenuOpen && (
-          <div className="mobile-overlay" onClick={closeMobileMenu}></div>
-        )}
-      </div>
-    </nav>
+      {/* Mobile menu overlay */}
+      {isMobileMenuOpen && (
+        <div className={`mobile-overlay ${isMobileMenuOpen ? 'show' : ''}`} onClick={closeMobileMenu}></div>
+      )}
+    </>
   );
 };
 
